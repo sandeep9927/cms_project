@@ -11,6 +11,7 @@
                                     <th>Comments</th>
                                     <th>Date</th>
                                     <th>Delete</th>
+                                    <th>Edit</th>
 
                                 </tr>
                             </thead >
@@ -40,6 +41,7 @@
                                     echo "<td>$post_tag</td>";
                                     echo "<td>$post_commencts_count</td>";
                                     echo "<td>$post_date</td>";
+                                    echo "<td><a href='post.php?source=edit_post&post_id={$post_id}'>Edit</a></td>";
                                     echo "<td><a href='post.php?delete={$post_id}'>Delete</a></td>";
                                     echo "</tr>";
                                     
