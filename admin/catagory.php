@@ -1,3 +1,4 @@
+
 <?php include('includes/header.php'); ?>
 
     <div id="wrapper">
@@ -16,9 +17,7 @@
                             Welcome Admon
                             <small>Subheading</small>
                         </h1>
-                       
-                    <div class="col-xs-6">
-                    <?php 
+                        <?php 
                     if(isset($_POST['submit'])){
                         $cat_title = $_POST['cat_title'];
                         if($cat_title == "" || empty($cat_title)){
@@ -35,6 +34,9 @@
                     
                     
                     ?>
+                       
+                    <div class="col-xs-6">
+              
                         <form action="" method="post">
                             <label for="cat-title">Add Category</label>
                             <div class="form-group">
@@ -64,7 +66,7 @@
                                     <th>category title</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
-                            </tr>
+                                </tr>
                         
                         </thead>
                         <tbody>
@@ -85,13 +87,12 @@
                    echo "<td><a href='catagory.php?edit={$cat_id}'>Edit</a></td>";
                    echo "</tr>";
                }
-              ?>
-              <?php 
+              ?><?php
               if(isset($_GET['delete'])){
                   $delete_cat_id = $_GET['delete'];
                 $query = "DELETE FROM `catagory` WHERE `cat_id` = {$delete_cat_id}";
                   $run = mysqli_query($connection,$query);
-                  //header('Location: catagory.php');
+                //   header('Location: catagory.php');
                   if($run == true){
                       ?>
                       <script>
