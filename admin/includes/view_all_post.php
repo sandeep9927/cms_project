@@ -25,6 +25,7 @@ alert("Successfully deleted ")
             <th>Image</th>
             <th>Tags</th>
             <th>Date</th>
+            <th>comments</th>
             <th>Edit</th>
             <th>Delete</th>
 
@@ -62,6 +63,19 @@ alert("Successfully deleted ")
             echo "<td>$post_tag</td>";
             // echo "<td>$post_commencts_count</td>";
             echo "<td>$post_date</td>";
+
+            //<-----------------comments count query ----------------->
+            $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+            $send_comment_query = mysqli_query($connection, $query);
+    
+            $row = mysqli_fetch_array($send_comment_query);
+            $comment_id = $row['comment_id'];
+            $count_comments = mysqli_num_rows($send_comment_query);
+    
+    
+            echo "<td><a href='post_comments.php?id=$post_id'>$count_comments</a></td>";
+
+            // echo "<td>4</td>";
             echo "<td><a href='post.php?source=edit_post&post_id={$post_id}'>Edit</a></td>";
             echo "<td><a href='post.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";

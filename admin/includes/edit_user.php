@@ -73,13 +73,7 @@ if(isset($_POST['update_post'])){
 
 		</select>
 	</div>
-    <div class="form-group">
-        <label for="users">Users</label>
-        <input value="<?php  echo $post_title;?>" type="text" class="form-control" name="post_title">
-        <!-- <select name="post_user" id=""> -->
-        </select>
 
-    </div>
     <div class="form-group">
         <label for="users">Users</label>
         <input value="<?php  echo $post_auther;?>" type="text" class="form-control" name="post_user">
@@ -105,10 +99,6 @@ if(isset($_POST['update_post'])){
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
         <input type="text" class="form-control" name="post_tags" value="<?php  echo $post_tag;?>">
-    </div>
-    <div class="form-group">
-        <label for="post_tags">Post Tags</label>
-        <input type="text" class="form-control" name="post_date" value="<?php  echo $post_date;?>">
     </div>
 
     <div class="form-group">
