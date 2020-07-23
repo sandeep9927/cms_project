@@ -118,7 +118,7 @@ include('includes/navigation.php');
             $query = "SELECT * FROM `comments` WHERE `comment_post_id` = '$the_post_id' AND
             `comment_status` = 'Approve' ORDER BY `comment_id` DESC";
             $select_comment_query = mysqli_query($connection, $query);
-            print_r($query);
+            //print_r($query);
             if(!$select_comment_query) {
 
                 die('Query Failed' . mysqli_error($connection));

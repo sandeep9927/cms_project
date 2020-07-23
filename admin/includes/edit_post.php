@@ -27,7 +27,7 @@ if(isset($_POST['update_post'])){
     $post_content        =  ($_POST['post_content']);
     $post_tags           =  ($_POST['post_tags']);
     $post_date          =   $_POST['post_date'];
-    move_uploaded_file($post_image_temp,"../iamge/$post_image");
+    move_uploaded_file($post_image_temp,"../image/$post_image");
     if(empty($post_image)){
         $query = "SELECT FROM `post` WHERE `popst_id` ='$the_post_id'";
         $img_query = mysqli_query($connection,$img_query);
@@ -107,7 +107,7 @@ if(isset($_POST['update_post'])){
         <input type="text" class="form-control" name="post_tags" value="<?php  echo $post_tag;?>">
     </div>
     <div class="form-group">
-        <label for="post_tags">Post Tags</label>
+        <label for="post_tags">Date</label>
         <input type="text" class="form-control" name="post_date" value="<?php  echo $post_date;?>">
     </div>
 

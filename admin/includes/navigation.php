@@ -23,7 +23,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -52,7 +52,7 @@
                         </ul>
                     </li>
                     <li class="">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i>catagory</a>
+                        <a href="catagory.php"><i class="fa fa-fw fa-file"></i>catagory</a>
                     </li>
                     <li>
                         <a href="comments.php"><i class="fa fa-fw fa-comments"></i>comments</a>
@@ -63,10 +63,10 @@
                         user <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="user_dropdown" class="collapse">
                             <li>
-                                <a href="#">view post </a>
+                                <a href="./users.php">view all users </a>
                             </li>
                             <li>
-                                <a href="#">add post </a>
+                                <a href="users.php?source=add_user">add users </a>
                             </li>
                         </ul>
 

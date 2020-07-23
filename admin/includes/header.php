@@ -1,5 +1,14 @@
 
-<?php include('../includes/database.php'); 
+<?php include('../includes/database.php'); ?>
+<?php ob_start(); ?>
+<?php session_start(); ?>
+<?php
+
+if(!isset($_SESSION['usre_role'])){
+    header("location:../index.php");
+}
+?>
+<?php
 
 // session_start();
 // if(isset($_SESSION['user_role']))

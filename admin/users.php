@@ -23,14 +23,14 @@
                            $source = '';
                        }
                        switch($source){
-                           case 'add_post';
+                           case 'add_user';
                             include('includes/add_user.php');
                             break;
-                            case 'edit_post';
+                            case 'edit_user';
                             include('includes/edit_user.php');;
                         break;
                         default:
-                        include('includes/view_all_user.php');
+                        include('includes/view_all_users.php');
                     break;
 
                        }
