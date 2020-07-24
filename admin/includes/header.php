@@ -1,23 +1,15 @@
 
 <?php include('../includes/database.php'); ?>
+
 <?php ob_start(); ?>
 <?php session_start(); ?>
-<?php
+<?php 
 
-if(!isset($_SESSION['usre_role'])){
-    header("location:../index.php");
+if(!$_SESSION['user_role'] =='admin'){
+    header("Location:../index.php");
 }
 ?>
-<?php
 
-// session_start();
-// if(isset($_SESSION['user_role']))
-// {
-
-// }else{
-//     header('location: ../index.php');
-// }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +38,11 @@ if(!isset($_SESSION['usre_role'])){
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/jquery.js"></script>
+
+    <!-- <---------------ckediter-------------------> 
+    <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
 
 </head>
 

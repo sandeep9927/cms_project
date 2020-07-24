@@ -39,10 +39,10 @@ function confirm_data($result){
           
       confirm_data($create_post_query);
 
-    //   $the_post_id = mysqli_insert_id($connection);
+      $the_post_id = mysqli_insert_id($connection);
 
 
-    //   echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
+      echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
        
 
 
@@ -141,12 +141,27 @@ function confirm_data($result){
           <input type="text" class="form-control" name="post_tags">
       </div>
       
+
+<head>
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
+</head>
+
+
+
+
       <div class="form-group">
          <label for="post_content">Post Content</label>
-         <textarea class="form-control "name="post_content" id="" cols="30" rows="10">
+         <textarea class="form-control "name="post_content" id="editor" cols="30" rows="10">
          </textarea>
       </div>
-      
+      <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+         </script>
       
 
        <div class="form-group">

@@ -1,3 +1,12 @@
+<?php 
+function confirm_data($result){
+    global $connection;
+    if(!$result){
+        die("query failed".mysqli_error($connection));
+    }
+}
+
+?>
 <?php
 if(isset($_GET['post_id'])){
     $the_post_id = $_GET['post_id']; 
@@ -30,7 +39,7 @@ if(isset($_POST['update_post'])){
     move_uploaded_file($post_image_temp,"../image/$post_image");
     if(empty($post_image)){
         $query = "SELECT FROM `post` WHERE `popst_id` ='$the_post_id'";
-        $img_query = mysqli_query($connection,$img_query);
+        $img_query = mysqli_query($connection,$query);
         while($row = mysqli_fetch_assoc($img_query)){
             $post_image = $row['post_image'];  
         }
@@ -43,6 +52,7 @@ if(isset($_POST['update_post'])){
     `post_status`='$post_status',`view_count`='$post_user' WHERE `post_id`= '$the_post_id' ";
     $update_query = mysqli_query($connection,$query);
     confirm_data($update_query);
+    // $the_post_id = mysqli_insert_id($connection);
     echo "<p class='bg-success'>Post Updated. <a href='../post.php?post_id={$the_post_id}'>View Post </a> or <a href='post.php'>Edit More Posts</a></p>";
     
 
@@ -53,13 +63,13 @@ if(isset($_POST['update_post'])){
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input type="text" class="form-control" name="title" value="<?php  echo $post_title;?>">
+        <input type="text" class="form-control" name="post_title" value="<?php  echo $post_title;?>">
     </div>
 
-    <div class= "form-group">
-		<select name="post_category" id="">
-			
-			<?php
+    <div class="form-group">
+        <select name="post_category" id="">
+
+            <?php
 			$query = "SELECT * FROM catagory";
             $select_categories= mysqli_query($connection, $query);
 		    while ($row = mysqli_fetch_assoc($select_categories)) 
@@ -71,15 +81,9 @@ if(isset($_POST['update_post'])){
         //    query_  fail($select_categories);
 			?>
 
-		</select>
-	</div>
-    <div class="form-group">
-        <label for="users">Users</label>
-        <input value="<?php  echo $post_title;?>" type="text" class="form-control" name="post_title">
-        <!-- <select name="post_user" id=""> -->
         </select>
-
     </div>
+   
     <div class="form-group">
         <label for="users">Users</label>
         <input value="<?php  echo $post_auther;?>" type="text" class="form-control" name="post_user">
@@ -88,18 +92,42 @@ if(isset($_POST['update_post'])){
 
     </div>
 
+
+
     <div class="form-group">
+        <select name="post_status" id="">
+
+            <option value='<?php echo $post_status ?>'><?php echo $post_status; ?></option>
+
+            <?php
+          
+          if($post_status == 'published' ) {
+          
+              
+    echo "<option value='draft'>Draft</option>";
+           
+          } else {
+           
+    echo "<option value='published'>Publish</option>"; 
+          }    
+              
+        ?>
+        </select>
+    </div>
+
+
+    <!-- <div class="form-group">
         <select name="post_status" id="">
             <option value="draft">Post Status</option>
             <option value="published">Published</option>
             <option value="draft">Draft</option>
         </select>
-    </div>
+    </div> -->
 
     <div class="form-group">
         <!-- <label for="post_image">Post Image</label> -->
         <img width="100" src="../image/<?php  echo $post_image;?>" alt="">
-        <input  type="file" name="image">
+        <input type="file" name="image">
     </div>
 
     <div class="form-group">
@@ -110,13 +138,23 @@ if(isset($_POST['update_post'])){
         <label for="post_tags">Date</label>
         <input type="text" class="form-control" name="post_date" value="<?php  echo $post_date;?>">
     </div>
+    <head>
 
+        <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
+    </head>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control " name="post_content" id="" cols="30" rows="10">
+        <textarea class="form-control " name="post_content" id="editor" cols="30" rows="10">
 <?php  echo $post_content;?>
 </textarea>
     </div>
+    <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    </script>
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="update_post" value="Publish Post">
     </div>

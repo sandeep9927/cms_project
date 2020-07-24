@@ -45,7 +45,7 @@ if(isset($_GET['edit_user'])){
             $query .="username = '{$username}', ";
             $query .="user_email = '{$user_email}', ";
             $query .="user_password   = '{$user_password}' ";
-            $query .= "WHERE user_id = {$the_user_id} ";
+            $query .= "WHERE user_id = '{$the_user_id}' ";
 
 
            

@@ -39,10 +39,11 @@ include('includes/navigation.php');
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date;?></p>
                 <hr>
-                <img class="img-responsive" src="image/<?php echo $post_image;?>" alt="image destroyed ">
+                <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src="image/<?php echo $post_image;?>" alt="image destroyed "></a>
+                
                 <hr>
                 <p><?php echo $post_content;?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 
