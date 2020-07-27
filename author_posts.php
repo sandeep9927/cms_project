@@ -18,13 +18,7 @@ include('includes/navigation.php');
                     $the_post_id = $_GET['p_id'];
                     // echo $the_post_id;
                     // die;
-                
-
-                $update_statement = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $the_post_id";
-
-                $send_query =mysqli_query($connection,$update_statement);
-                
-
+                }
                 $query = "SELECT * FROM `posts` WHERE `post_id`= $the_post_id";
                 $all_post_query = mysqli_query($connection,$query);
 
@@ -57,14 +51,7 @@ include('includes/navigation.php');
             <hr>
 
 
-            <?php  }
-        
-        
-        
-        }else{
-            header('Location:index.php');
-        }
-        ?>
+            <?php  }?>
 
 
 

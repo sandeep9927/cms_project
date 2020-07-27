@@ -4,6 +4,7 @@ include('includes/database.php');
 include('includes/navigation.php');
 ?>
 
+
 <!-- Page Content -->
 <div class="container">
 
@@ -13,13 +14,6 @@ include('includes/navigation.php');
         <div class="col-md-8">
 
             <?php
-
-                $post_query_count = "SELECT * FROM `posts`";
-                $find_count = mysqli_query($connection,$post_query_count);
-                $count = mysqli_num_rows($find_count);
-                $count = ceil($count/5);
-
-
                 $query = "SELECT * FROM `posts`";
                 $all_post_query = mysqli_query($connection,$query);
 
@@ -71,16 +65,8 @@ include('includes/navigation.php');
     </div>
     <!-- /.row -->
 
-    <hr><h1>view_all_post_here_and_click_here</h1>
-    <ul class="pager">
-        <?php 
-        for($i=1;$i<=$count;$i++){
-            echo "<li><a href=''>{$i}</a></li>";
-        }
-        ?>
-<!--         
-        <li><a href="">2</a></li> -->
-    </ul>
-<?php
+    <hr>
+
+    <?php
 include('includes/footer.php');
 ?>

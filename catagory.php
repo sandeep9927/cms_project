@@ -16,8 +16,9 @@ include('includes/navigation.php');
                 <?php
                 if(isset($_GET['catagory'])){
                     $post_catagory_id = $_GET['catagory'];
+                    // echo $post_catagory_id;die;
                 }
-                $query = "SELECT * FROM `posts` WHERE `post_cat_id` = '$post_catagory_id'";
+                $query = "SELECT * FROM `posts` WHERE `post_cat_id` = '{$post_catagory_id}'";
                 $all_post_query = mysqli_query($connection,$query);
 
                 while($row = mysqli_fetch_assoc($all_post_query)){

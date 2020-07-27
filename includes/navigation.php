@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Home</a>
+                <a class="navbar-brand" href="/cms_project">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,10 +24,12 @@
                 
                 while($row = mysqli_fetch_assoc($run)){
                     $cat_title = $row['cat_title'];
-                    echo "<li><a href='#'>{$cat_title}</a></li>";
+                    echo "<li><a href='/cms_project/catagory.php'>{$cat_title}</a></li>";
                 }
                 ?>
-                <li><a href="admin">Admin</a></li>
+                <li><a href="/cms_project/admin">Admin</a></li>
+                <li><a href="/cms_project/registration">Registration</a></li>
+                <li><a href="/cms_project/contact">contact</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

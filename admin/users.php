@@ -1,4 +1,9 @@
 <?php include('includes/header.php'); ?>
+<?php 
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+?>
 
     <div id="wrapper">
 
@@ -14,7 +19,7 @@
                     <div class="col-lg-12">
                     <h1 class="page-header">
                             Welcome Admon
-                            <small>Subheading</small>
+                            <small><?php echo $username ; ?></small>
                         </h1>
                        <?php
                        if(isset($_GET['source'])){
