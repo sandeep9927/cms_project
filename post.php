@@ -3,7 +3,47 @@ include('includes/header.php');
 include('includes/database.php');
 include('includes/navigation.php');
 ?>
+<?php 
+if(isset($_POST['liked'])){
+    echo "===========here=============";
+//     $post_id = $_POST['post_id'];
+//     $user_id = $_POST['user_id'];
+//     //select post
+//     $query = "SELECT * FROM  posts WHERE post_id = $post_id";
+//     $postResult = mysqli_query($connection,$query);
+//     $post = mysqli_fetch_array($postResult);
+//     $like = $post['likes'];
+//     if(mysqli_num_rows($post)>=1){
+//         echo $post['post_id'];
+//     }
+//     //update post with likes
+//    mysqli_query($connection,"UPDATE posts SET likes = $like +1 WHERE post_id = $post_id");
+//    //create likes for post
+//    mysqli_query($connection,"INSERT INTO likes(user_id,post_id) VALUES ($user_id,$post_id)");
+}
 
+if(isset($_POST['unliked'])){
+    echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=============";
+//     $post_id = $_POST['post_id'];
+//     $user_id = $_POST['user_id'];
+//     //select post
+//     $query = "SELECT * FROM  posts WHERE post_id = $post_id";
+//     $postResult = mysqli_query($connection,$query);
+//     $post = mysqli_fetch_array($postResult);
+//     $like = $post['likes'];
+//     if(mysqli_num_rows($post)>=1){
+//         echo $post['post_id'];
+//     }
+//     //update post with likes
+//    mysqli_query($connection,"UPDATE posts SET likes = $like +1 WHERE post_id = $post_id");
+//    //create likes for post
+//    mysqli_query($connection,"INSERT INTO likes(user_id,post_id) VALUES ($user_id,$post_id)");
+
+}
+
+
+
+?>
 
 <!-- Page Content -->
 <div class="container">
@@ -50,8 +90,17 @@ include('includes/navigation.php');
             <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date;?></p>
             <hr>
             <img class="img-responsive" src="image/<?php echo $post_image;?>" alt="image destroyed ">
+
             <hr>
             <p><?php echo $post_content;?></p>
+            <hr>
+                    <div class="row">
+                    <p class="pull-right" ><a class="like" href="#"><span class="glyphicon glyphicon-thumbs-up"></span> like</a></p>
+                    </div>
+                    <div class="row">
+                    <p class="pull-right" ><a class="unlike" href="#"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a></p>
+                    </div>
+
             <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
@@ -183,3 +232,37 @@ include('includes/navigation.php');
     <?php
 include('includes/footer.php');
 ?>
+<script>
+    $(document).ready(function(){
+        console.log ("working perfect");
+        var post_id = <?php echo $the_post_id;?>;
+        var user_id = 28;
+       // onsole.log ("working perfect");
+        $('.like').click(function(){
+            $.ajax({
+                url:"post.php?p_id=<?php echo $the_post_id;?>",
+                type:'post',
+                data:{
+                    'liked':1,
+                    'post_id':post_id,
+                    'user_id':user_id
+                }
+            })
+        });
+
+            //unlike 
+            $('.unlike').click(function(){
+            $.ajax({
+                url:"post.php?p_id=<?php echo $the_post_id;?>",
+                type:'post',
+                data:{
+                    'unliked':1,
+                    'post_id':post_id,
+                    'user_id':user_id
+                }
+            })
+        });
+
+
+    });
+</script>

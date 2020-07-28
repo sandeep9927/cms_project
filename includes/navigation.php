@@ -1,5 +1,6 @@
  <?php
  include('database.php');
+ include('admin/function.php');
  ?>
  <!-- Navigation -->
  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -27,9 +28,19 @@
                     echo "<li><a href='/cms_project/catagory.php'>{$cat_title}</a></li>";
                 }
                 ?>
-                <li><a href="/cms_project/admin">Admin</a></li>
+
+
+
+                    <?php //if(isLoggedIn()): ?>
+                    <li><a href="/cms_project/admin">Admin</a></li>
+                    <li><a href="/cms_project/includes/logout.php">logout</a></li>
+                    <?php //else: ?>
+
+                    <li><a href="login.php">login</a></li>
+                    <?php //endif; ?>
+
                 <li><a href="/cms_project/registration">Registration</a></li>
-                <li><a href="/cms_project/contact">contact</a></li>
+                <li><a href="/cms_project/contact.php">contact</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

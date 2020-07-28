@@ -1,3 +1,4 @@
+
 RewriteEngine on
 
 RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
@@ -5,3 +6,6 @@ RewriteRule ^(index|contact|registration)$ $1.php [NC,L]
 RewriteRule ^post/(\d+)$ post.php?p_id=$1 [NC,L]
 
 RewriteRule ^catagory/(\d+)$ catagory.php?catagory=$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]

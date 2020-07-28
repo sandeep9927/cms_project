@@ -1,5 +1,6 @@
 <?php  include "includes/database.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php  include "admin/functions.php"; ?>
 
 
     <!-- Navigation -->
@@ -9,7 +10,7 @@
 
 
 // the message
-$msg = "First line of text\nSecond line of text";
+//$msg = "First line of text\nSecond line of text";
 
 // use wordwrap() if lines are longer than 70 characters
 // $msg = wordwrap($msg,70);
@@ -22,7 +23,7 @@ $msg = "First line of text\nSecond line of text";
         $subject    = wordwrap($_POST['subject'],70);
         $body       = $_POST['body'];
         $header     =$_POST['email'];
-        mail($to,$subject,$body);
+        sendMail($to,$subject,$body);
         
 
     }
