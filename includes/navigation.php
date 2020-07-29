@@ -22,14 +22,13 @@
                 <?php
                 $query = "SELECT * FROM `catagory`";
                 $run = mysqli_query($connection,$query);
-                
                 while($row = mysqli_fetch_assoc($run)){
                     $cat_title = $row['cat_title'];
-                    echo "<li><a href='/cms_project/catagory.php'>{$cat_title}</a></li>";
+                    $cat_id = $row['cat_id'];
+                    echo "<li><a href='catagory.php?catagory=$cat_id'>{$cat_title}</a></li>";
                 }
+            
                 ?>
-
-
 
                     <?php //if(isLoggedIn()): ?>
                     <li><a href="/cms_project/admin">Admin</a></li>

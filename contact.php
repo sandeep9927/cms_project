@@ -23,7 +23,7 @@
         $subject    = wordwrap($_POST['subject'],70);
         $body       = $_POST['body'];
         $header     =$_POST['email'];
-        sendMail($to,$subject,$body);
+        mail($to,$subject,$body);
         
 
     }

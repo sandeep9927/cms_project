@@ -1,11 +1,24 @@
 <?php  include "includes/database.php"; ?>
  <?php  include "includes/header.php"; ?>
+ <?php  include "admin/functions.php"; ?>
 
 
     <!-- Navigation -->
     
     <?php  include "includes/navigation.php"; ?>
 
+
+<?php  echo loggedInUserId(28); echo "========";
+
+
+if(userLikedThisPost()){
+    echo "like ";
+}else{
+    echo "don't like ";
+}
+
+
+die; ?>
     
  
     <!-- Page Content -->
@@ -129,7 +142,53 @@
                 
                 
                 
-                
+   <ul class="pager">
+
+<?php 
+
+$number_list = array();
+
+
+for($i =1; $i <= $count; $i++) {
+
+
+if($i == $page) {
+
+     echo "<li '><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
+
+
+}  else {
+
+    echo "<li '><a href='index.php?page={$i}'>{$i}</a></li>";
+
+
+
+
+ 
+
+}
+
+
+
+
+
+
+   
+}
+
+
+
+
+
+
+ ?>
+    
+
+
+
+
+</ul>
+
 
               
     
@@ -150,53 +209,7 @@
         <hr>
 
 
-        <ul class="pager">
-
-        <?php 
-
-        $number_list = array();
-
-
-        for($i =1; $i <= $count; $i++) {
-
-
-        if($i == $page) {
-
-             echo "<li '><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
-
-
-        }  else {
-
-            echo "<li '><a href='index.php?page={$i}'>{$i}</a></li>";
-
-
-
         
-         
-
-        }
-
-        
-        
-
-
-
-           
-        }
-
-
-
-
-
-
-         ?>
-            
-
-
-
-
-        </ul>
-
    
 
 <?php include "includes/footer.php";?>

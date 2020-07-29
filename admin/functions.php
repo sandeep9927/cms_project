@@ -7,6 +7,10 @@ function redirect($location){
     exit;
 
 }
+function query($query){
+    global $connection;
+    return mysqli_query($connection,$query);
+}
 
 
 function ifItIsMethod($method=null){
@@ -35,6 +39,31 @@ function isLoggedIn(){
 
 }
 
+
+// function confirm_data($result){
+//     global $connection;
+//     if(!$result){
+//         die("query failed".mysqli_error($connection));
+//     }
+// }
+
+
+function loggedInUserId(){
+    if(isLoggedIn()){
+        $result = query("SELECT * FROM users WHERE username'". $_SESSION['username'] ."'");
+        confirm_data($result);
+        $user = mysqli_fetch_array($result);
+        if(mysqli_num_rows($result)>=1){
+            return $user['user_id'];
+        }
+    }
+}
+function userLikedThisPost($post_id = ''){
+    $result = query("SELECT * FROM likes WHERE user_id =" . isLoggedIn() ." AND post_id ={$post_id}");
+    confirm_data($result);
+    return mysqli_num_rows($result) >=1 ? true : false;
+}
+
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
     if(isLoggedIn()){
@@ -45,9 +74,14 @@ function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
 }
 
+// function getPostLikes($post_id){
+//         $result = "SELECT * FROM likes WHERE post_id = $post_id";
+//         confirm_data($result);
+//         echo mysqli_num_rows($result);
+// }
+
 function sendMail($to,$subject,$body){
     $fh = fopen(__DIR__. '/../mails.log','a');
-    // fputs($fh, implode("\n", [$to,$subject, $body]). "\n\n");
     fputs($fh, implode("\n", ["==================================",Date('Y-m-d'), "===========================",$to,$subject, $body]). "\n\n");
     fclose($fh);
 

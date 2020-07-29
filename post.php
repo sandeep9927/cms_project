@@ -2,43 +2,45 @@
 include('includes/header.php');
 include('includes/database.php');
 include('includes/navigation.php');
+include('admin/functions.php');
 ?>
 <?php 
 if(isset($_POST['liked'])){
-    echo "===========here=============";
-//     $post_id = $_POST['post_id'];
-//     $user_id = $_POST['user_id'];
-//     //select post
-//     $query = "SELECT * FROM  posts WHERE post_id = $post_id";
-//     $postResult = mysqli_query($connection,$query);
-//     $post = mysqli_fetch_array($postResult);
-//     $like = $post['likes'];
-//     if(mysqli_num_rows($post)>=1){
-//         echo $post['post_id'];
-//     }
-//     //update post with likes
-//    mysqli_query($connection,"UPDATE posts SET likes = $like +1 WHERE post_id = $post_id");
-//    //create likes for post
-//    mysqli_query($connection,"INSERT INTO likes(user_id,post_id) VALUES ($user_id,$post_id)");
+    $post_id = $_POST['post_id'];
+    $user_id = $_POST['user_id'];
+    //select post
+    $query = "SELECT * FROM  posts WHERE post_id = $post_id";
+    $postResult = mysqli_query($connection,$query);
+    $post = mysqli_fetch_array($postResult);
+    $like = $post['likes'];
+    // if(mysqli_num_rows($postResult)>=1){
+    //     echo $post['post_id'];
+    // }
+    //update post with likes
+   mysqli_query($connection,"UPDATE posts SET likes = $like +1 WHERE post_id = $post_id");
+   //create likes for post
+   mysqli_query($connection,"INSERT INTO likes(user_id,post_id) VALUES ($user_id,$post_id)");
+    exit();
 }
 
 if(isset($_POST['unliked'])){
-    echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=============";
-//     $post_id = $_POST['post_id'];
-//     $user_id = $_POST['user_id'];
-//     //select post
-//     $query = "SELECT * FROM  posts WHERE post_id = $post_id";
-//     $postResult = mysqli_query($connection,$query);
-//     $post = mysqli_fetch_array($postResult);
-//     $like = $post['likes'];
-//     if(mysqli_num_rows($post)>=1){
-//         echo $post['post_id'];
-//     }
-//     //update post with likes
-//    mysqli_query($connection,"UPDATE posts SET likes = $like +1 WHERE post_id = $post_id");
-//    //create likes for post
-//    mysqli_query($connection,"INSERT INTO likes(user_id,post_id) VALUES ($user_id,$post_id)");
-
+    //echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=============";
+    $post_id = $_POST['post_id'];
+    $user_id = $_POST['user_id'];
+    //select post
+    $query = "SELECT * FROM  posts WHERE post_id = $post_id";
+    $postResult = mysqli_query($connection,$query);
+    $post = mysqli_fetch_array($postResult);
+    $like = $post['likes'];
+    if(mysqli_num_rows($post)>=1){
+        echo $post['post_id'];
+    }
+    //update post with likes
+    mysqli_query($connection,"DELETE FROM likes WHERE post_id = $post_id AND user_id = $user_id");
+   mysqli_query($connection,"UPDATE posts SET likes = $like -1 WHERE post_id = $post_id");
+   //create likes for post
+  
+    exit();
 }
 
 
@@ -93,13 +95,27 @@ if(isset($_POST['unliked'])){
 
             <hr>
             <p><?php echo $post_content;?></p>
+
+
+                </php  
+                mysqli_stmt_free
+                ?>
             <hr>
                     <div class="row">
-                    <p class="pull-right" ><a class="like" href="#"><span class="glyphicon glyphicon-thumbs-up"></span> like</a></p>
+                    <p class="pull-right" ><a class="like" href="#"><span class="glyphicon glyphicon-thumbs-up"></span><?php //echo userLikedThisPost($the_post_id) ? 'Unkile' : 'Like' ?>like</a></p>
                     </div>
                     <div class="row">
                     <p class="pull-right" ><a class="unlike" href="#"><span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a></p>
                     </div>
+                    <div class="row">
+                        <?php 
+                        $result = "SELECT * FROM likes WHERE post_id = $the_post_id";
+                        $run = mysqli_query($connection,$result);
+                        $likes_count = mysqli_num_rows($run);
+                        ?>
+                    <p class="pull-right" >Likes:<?php  echo $likes_count;?></a></p>
+                    </div>
+
 
             <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
